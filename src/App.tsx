@@ -1,24 +1,30 @@
-import { useState } from "react";
-import "./App.css";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import {
+  selectTransactions,
+  fetchTransactions,
+} from "./features/dashboard/transactionsSlice";
+import Dashboard from "./features/dashboard/Dashboard";
+import Layout from "./components/Layout";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
+  const transactions = useAppSelector(selectTransactions);
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, [dispatch]);
+
+  console.log(transactions);
 
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="summary" element={<div>Summary</div>} />
+      </Route>
+    </Routes>
   );
 }
 
