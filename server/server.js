@@ -64,11 +64,13 @@ let transactions = [
   },
 ];
 
+let last_id = 7;
+
 // CRUD Operations
 
 // Create a new transaction
 app.post("/transactions", (req, res) => {
-  const newTransaction = { id: transactions.length + 1, ...req.body };
+  const newTransaction = { id: ++last_id, ...req.body };
   transactions.push(newTransaction);
   res.status(201).send(newTransaction);
 });
