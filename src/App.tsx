@@ -1,22 +1,16 @@
-import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import {
-  selectTransactions,
-  fetchTransactions,
-} from "./features/dashboard/transactionsSlice";
-import Dashboard from "./features/dashboard/Dashboard";
 import Layout from "./components/Layout";
+import { fetchTransactions } from "./features/dashboard/actions";
+import Dashboard from "./features/dashboard/Dashboard";
+import { useAppDispatch } from "./store/hooks";
 
 function App() {
   const dispatch = useAppDispatch();
-  const transactions = useAppSelector(selectTransactions);
 
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
-
-  console.log(transactions);
 
   return (
     <Routes>

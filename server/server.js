@@ -4,8 +4,8 @@ const cors = require("cors");
 const app = express();
 const PORT = 8000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 // Mock transaction data
 let transactions = [
@@ -73,7 +73,11 @@ let last_id = 7;
 
 // Create a new transaction
 app.post("/transactions", (req, res) => {
-  const newTransaction = { id: ++last_id, ...req.body };
+  const newTransaction = {
+    id: ++last_id,
+    date: new Date().toISOString(),
+    ...req.body,
+  };
   transactions.push(newTransaction);
   res.status(201).send(newTransaction);
 });
@@ -103,7 +107,7 @@ app.put("/transactions/:id", (req, res) => {
   transaction.amount = req.body.amount;
   transaction.type = req.body.type;
   transaction.category = req.body.category;
-  transaction.date = req.body.date;
+  transaction.date = new Date().toISOString();
 
   res.status(200).send(transaction);
 });
