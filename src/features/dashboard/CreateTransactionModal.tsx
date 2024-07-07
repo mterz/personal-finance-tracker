@@ -31,7 +31,6 @@ function CreateTransactionModal() {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: TransactionFormFields) => {
-    console.log(data);
     dispatch(createTransaction(formDataToTransactionVO(data)));
     onClose();
   };

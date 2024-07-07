@@ -14,7 +14,6 @@ export const createTransaction = createAsyncThunk(
   'transactions/createTransaction',
   async (transaction: CreateTransactionVO) => {
     const response = await transactionsApi.createTransaction(transaction);
-    console.log('res: ', response)
     return response
   }
 )

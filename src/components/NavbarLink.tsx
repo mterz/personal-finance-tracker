@@ -16,6 +16,7 @@ function NavbarLink(props: Props) {
       px={2}
       py={1}
       mx={1}
+      rounded={"md"}
       _hover={{ bg: "teal.600" }}
       _activeLink={{ bg: "teal.700" }}
     >

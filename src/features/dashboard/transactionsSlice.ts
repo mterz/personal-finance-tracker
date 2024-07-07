@@ -27,7 +27,8 @@ export const transactionsSlice = createSlice({
       const index = state.items.findIndex((t) => t.id === updatedTransaction.id)
       state.items[index] = updatedTransaction
     }).addCase(deleteTransaction.fulfilled, (state, action) => {
-      state.items = state.items.filter((t) => t.id !== action.meta.arg.id)
+      const newItems = state.items.filter((t) => t.id !== action.meta.arg.id);
+      state.items = newItems;
     })
   }
 })

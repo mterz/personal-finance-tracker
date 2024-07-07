@@ -4,7 +4,7 @@ import NavbarLink from "./NavbarLink";
 function Navbar() {
   return (
     <Flex as="nav" bg="teal.500" color="white">
-      <Container maxW="container.xl" p={0}>
+      <Container maxW="container.xl" p={0} px={4}>
         <Flex align="center" justify="space-between" wrap="wrap" py="6">
           <Flex align="center">
             <Text fontSize="xl" fontWeight="bold">

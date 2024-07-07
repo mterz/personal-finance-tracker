@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import { fetchTransactions } from "./features/dashboard/actions";
 import Dashboard from "./features/dashboard/Dashboard";
 import { useAppDispatch } from "./store/hooks";
+import Summary from "./features/summary/Summary";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
-        <Route path="summary" element={<div>Summary</div>} />
+        <Route path="summary" element={<Summary />} />
       </Route>
     </Routes>
   );

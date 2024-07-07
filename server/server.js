@@ -107,7 +107,7 @@ app.put("/transactions/:id", (req, res) => {
   transaction.amount = req.body.amount;
   transaction.type = req.body.type;
   transaction.category = req.body.category;
-  transaction.date = new Date().toISOString();
+  transaction.date = req.body.date;
 
   res.status(200).send(transaction);
 });
