@@ -1,7 +1,7 @@
 import { Accordion, Grid, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
-import { deleteTransaction } from "./actions";
+import { deleteTransaction } from "./transactionActions";
 import { Transaction } from "./domain/Transaction";
 import TransactionListItem from "./TransactionListItem";
 
@@ -26,6 +26,10 @@ function TransactionList(props: Props) {
         return newOpenItems.map((i) => (i > relevantIndex ? i - 1 : i));
       });
     };
+  }
+
+  if (transactions.length === 0) {
+    return <Text>No transactions found</Text>;
   }
 
   return (

@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store/types'
 import { Transaction } from './domain/Transaction'
-import { fetchTransactions, createTransaction, updateTransaction, deleteTransaction } from './actions'
+import { fetchTransactions, createTransaction, updateTransaction, deleteTransaction } from './transactionActions'
 
 export interface TransactionsState {
   items: Transaction[]
 }
 
-const initialState: TransactionsState = {
+export const initialState: TransactionsState = {
   items: [],
 }
 
@@ -25,9 +25,11 @@ export const transactionsSlice = createSlice({
     }).addCase(updateTransaction.fulfilled, (state, action) => {
       const updatedTransaction = action.payload
       const index = state.items.findIndex((t) => t.id === updatedTransaction.id)
-      state.items[index] = updatedTransaction
+      if (index !== -1) {
+        state.items[index] = updatedTransaction
+      }
     }).addCase(deleteTransaction.fulfilled, (state, action) => {
-      const newItems = state.items.filter((t) => t.id !== action.meta.arg.id);
+      const newItems = state.items.filter((t) => t.id !== action.payload.id);
       state.items = newItems;
     })
   }

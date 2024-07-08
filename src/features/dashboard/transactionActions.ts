@@ -29,7 +29,7 @@ export const updateTransaction = createAsyncThunk(
 export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransaction',
   async (transaction: Transaction) => {
-    const response = await transactionsApi.deleteTransaction(transaction);
-    return response
+    await transactionsApi.deleteTransaction(transaction);
+    return transaction;
   }
 ) 

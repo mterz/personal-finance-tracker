@@ -38,7 +38,7 @@ function Summary() {
             <StatNumber color="red.500">{totalExpense}</StatNumber>
           </Stat>
           <Stat>
-            <StatLabel>Total</StatLabel>
+            <StatLabel>Balance</StatLabel>
             <StatNumber>{total}</StatNumber>
           </Stat>
         </StatGroup>

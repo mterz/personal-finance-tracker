@@ -1,11 +1,6 @@
 import { Box, Flex, FormControl, FormLabel, Select } from "@chakra-ui/react";
 import { DatePicker } from "./DatePicker";
-
-export interface Filter {
-  category: string;
-  startDate: Date | null;
-  endDate: Date | null;
-}
+import { Filter } from "./domain/Filter";
 
 interface Props {
   filter: Filter;

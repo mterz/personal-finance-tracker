@@ -9,7 +9,7 @@ import {
 import TransactionForm, { TransactionFormFields } from "./TransactionForm";
 import { CreateTransactionVO } from "./transactionsApi";
 import { useAppDispatch } from "../../store/hooks";
-import { createTransaction } from "./actions";
+import { createTransaction } from "./transactionActions";
 
 function formDataToTransactionVO(
   data: TransactionFormFields

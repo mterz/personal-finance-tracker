@@ -1,12 +1,13 @@
 import { Container, Flex } from "@chakra-ui/react";
+import { useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import CreateTransactionModal from "./CreateTransactionModal";
+import { Filter } from "./domain/Filter";
+import FilterContainer from "./FilterContainer";
 import TransactionList from "./TransactionList";
 import { selectTransactions } from "./transactionsSlice";
-import FilterContainer, { Filter } from "./FilterContainer";
-import { useState } from "react";
-import _ from "lodash";
-import { computeFilteredTransactions } from "./utils/filter";
+import { getFilteredTransactions } from "./utils/filter";
+import { getUniqCategories } from "./domain/Transaction";
 
 function Dashboard() {
   const transactions = useAppSelector(selectTransactions);
@@ -16,10 +17,7 @@ function Dashboard() {
     endDate: null,
   });
 
-  const filteredTransactions = computeFilteredTransactions(
-    transactions,
-    filter
-  );
+  const filteredTransactions = getFilteredTransactions(transactions, filter);
 
   function handleFilterChange(f: Filter) {
     setFilter(f);
@@ -31,7 +29,7 @@ function Dashboard() {
         <CreateTransactionModal />
         <FilterContainer
           filter={filter}
-          categoryOptions={_.uniq(transactions.map((t) => t.category))}
+          categoryOptions={getUniqCategories(transactions)}
           onFilterChange={handleFilterChange}
         />
         <TransactionList transactions={filteredTransactions} />
