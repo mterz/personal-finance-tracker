@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import EditTransactionModal from "./EditTransactionModal";
-import { formatAmount, Transaction } from "./domain/Transaction";
+import { Transaction } from "./domain/Transaction";
 import { formatDate } from "./utils/date";
 
 interface Props {
@@ -36,7 +36,7 @@ function TransactionListItem(props: Props) {
               mr={4}
               align="right"
             >
-              {formatAmount(transaction)}
+              {transaction.amount}
             </Text>
           </Grid>
           <AccordionIcon />
@@ -48,7 +48,7 @@ function TransactionListItem(props: Props) {
             <Text>Description: {transaction.description}</Text>
             <Text>Type: {transaction.type}</Text>
             <Text>Category: {transaction.category}</Text>
-            <Text>Amount: {formatAmount(transaction)}</Text>
+            <Text>Amount: {transaction.amount}</Text>
             <Text>Date: {formatDate(transaction.date)}</Text>
           </VStack>
           <Flex gap={2}>

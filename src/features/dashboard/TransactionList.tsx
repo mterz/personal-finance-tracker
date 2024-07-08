@@ -1,8 +1,8 @@
 import { Accordion, Grid, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
-import { deleteTransaction } from "./redux/transactionActions";
 import { Transaction } from "./domain/Transaction";
+import { deleteTransaction } from "./redux/transactionActions";
 import TransactionListItem from "./TransactionListItem";
 
 interface Props {
@@ -12,6 +12,8 @@ interface Props {
 function TransactionList(props: Props) {
   const { transactions } = props;
 
+  // We need to contol the expanded state of the Accordion component,
+  // otherwise, the Accordion will not work as expected when deleting an item.
   const [expandedTransactions, setExpandedTransactions] = useState<number[]>(
     []
   );
@@ -23,6 +25,7 @@ function TransactionList(props: Props) {
       const relevantIndex = transactions.indexOf(transaction);
       setExpandedTransactions((prevOpenItems) => {
         const newOpenItems = prevOpenItems.filter((i) => i !== relevantIndex);
+        // all items after the deleted item will have their index decreased by 1
         return newOpenItems.map((i) => (i > relevantIndex ? i - 1 : i));
       });
     };

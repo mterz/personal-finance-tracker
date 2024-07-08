@@ -27,6 +27,10 @@ interface Props {
   onSubmit: (data: TransactionFormFields) => void;
 }
 
+/**
+ * Modal form containing four inputs: type, category, amount, and description.
+ * Used both for creating and updating transactions.
+ */
 function TransactionForm(props: Props) {
   const { transaction, onCancel, onSubmit } = props;
 
@@ -44,6 +48,16 @@ function TransactionForm(props: Props) {
   } = useForm<TransactionFormFields>({
     defaultValues,
   });
+
+  function validateAmount(value: string, otherFields: TransactionFormFields) {
+    if (otherFields.type === "income") {
+      return Number(value) > 0 || "Amount must be positive";
+    }
+    if (otherFields.type === "expense") {
+      return Number(value) < 0 || "Amount must be negative";
+    }
+    return true;
+  }
 
   return (
     <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +106,10 @@ function TransactionForm(props: Props) {
           <Controller
             name="amount"
             control={control}
-            rules={{ required: "Amount is required" }}
+            rules={{
+              required: "Amount is required",
+              validate: validateAmount,
+            }}
             render={({ field }) => (
               <Input id="amount" type="number" {...field} />
             )}
@@ -116,7 +133,7 @@ function TransactionForm(props: Props) {
 
       <ModalFooter>
         <Button variant="ghost" mr={3} onClick={onCancel}>
-          Close
+          Cancel
         </Button>
         <Button colorScheme="teal" type="submit">
           {transaction ? "Update Transaction" : "Create Transaction"}

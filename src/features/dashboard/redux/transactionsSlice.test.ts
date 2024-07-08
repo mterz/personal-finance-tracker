@@ -1,7 +1,7 @@
 import { UnknownAction } from '@reduxjs/toolkit';
 import * as actions from './transactionActions';
 import { Transaction } from '../domain/Transaction';
-import transactionsReducer, { initialState } from './transactionsSlice';
+import transactionsReducer, { changeCategoryFilter, changeEndDateFilter, changeStartDateFilter, initialState } from './transactionsSlice';
 
 const emptyFilter = { category: '', startDate: '', endDate: '' };
 
@@ -23,7 +23,6 @@ describe('transactionsReducer', () => {
     const expectedState = { ...initialState, items: [mockTransaction] };
     expect(transactionsReducer(initialState, action)).toEqual(expectedState);
   });
-
 
   test('should handle updateTransaction/fulfilled', () => {
     const mockTransactions = [{ id: 1, category: 'Food', amount: 100 }] as Transaction[];
@@ -56,5 +55,26 @@ describe('transactionsReducer', () => {
     const action = { type: actions.deleteTransaction.fulfilled.type, payload: missingTransaction };
     const expectedState = { ...initialState, items: mockTransactions };
     expect(transactionsReducer({items: mockTransactions, filter: emptyFilter}, action)).toEqual(expectedState);
+  });
+
+  test('should handle changeCategoryFilter', () => {
+    const mockCategory = 'Groceries'
+    const action = { type: changeCategoryFilter.type, payload: mockCategory };
+    const expectedState = { ...initialState, filter: {...initialState.filter, category: mockCategory} };
+    expect(transactionsReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test('should handle changeStartDateFilter', () => {
+    const mockStartDate = '2021-01-01';
+    const action = { type: changeStartDateFilter.type, payload: mockStartDate };
+    const expectedState = { ...initialState, filter: {...initialState.filter, startDate: mockStartDate}};
+    expect(transactionsReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test('should handle changeEndDateFilter', () => {
+    const mockEndDate = '2021-01-01';
+    const action = { type: changeEndDateFilter.type, payload: mockEndDate };
+    const expectedState = { ...initialState, filter: {...initialState.filter, endDate: mockEndDate}};
+    expect(transactionsReducer(initialState, action)).toEqual(expectedState);
   });
 });

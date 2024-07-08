@@ -4,9 +4,9 @@ import { Transaction } from "../../dashboard/domain/Transaction";
 
 const mockTransactions = [
   { id: 1, type: 'income', amount: 100 },
-  { id: 2, type: 'expense', amount: 50 },
+  { id: 2, type: 'expense', amount: -50 },
   { id: 3, type: 'income', amount: 150 },
-  { id: 4, type: 'expense', amount: 30 },
+  { id: 4, type: 'expense', amount: -30 },
 ] as Transaction[];
 
 describe('Summary Calculations', () => {
@@ -39,7 +39,7 @@ describe('Summary Calculations', () => {
   });
 
   test('calculateTotalExpense with mixed transactions', () => {
-    expect(calculateTotalExpense(mockTransactions)).toBe(-80); // -50 + -30 = 80
+    expect(calculateTotalExpense(mockTransactions)).toBe(-80); // -50 + (-30) = -80
   });
 
 });

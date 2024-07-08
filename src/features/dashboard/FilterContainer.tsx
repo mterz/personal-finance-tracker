@@ -18,8 +18,8 @@ function FilterContainer(props: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <Flex gap={8} direction="row" justifyContent="flex-start" wrap="wrap">
-      <Box w="250px">
+    <Flex gap={4} direction="row" justifyContent="flex-start" wrap="wrap">
+      <Box w="220px">
         <FormControl mb={4}>
           <FormLabel>Category</FormLabel>
           <Select

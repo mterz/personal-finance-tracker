@@ -21,7 +21,12 @@ function Dashboard() {
       <Container maxW="container.xl" p={0} px={4} my={4}>
         <CreateTransactionModal />
         <FilterContainer categoryOptions={getUniqCategories(transactions)} />
-        <TransactionList transactions={filteredTransactions} />
+        <TransactionList
+          transactions={filteredTransactions}
+          // Pass filter to remount the component when the filter changes
+          // to reset the expanded transactions
+          key={JSON.stringify(filter)}
+        />
       </Container>
     </Flex>
   );

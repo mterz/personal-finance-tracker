@@ -20,7 +20,7 @@ let transactions = [
   {
     id: 2,
     description: "Groceries",
-    amount: 150,
+    amount: -150,
     type: "expense",
     category: "Food",
     date: "2024-06-02",
@@ -28,7 +28,7 @@ let transactions = [
   {
     id: 3,
     description: "Electricity Bill",
-    amount: 75,
+    amount: -75,
     type: "expense",
     category: "Utilities",
     date: "2024-06-05",
@@ -36,7 +36,7 @@ let transactions = [
   {
     id: 4,
     description: "Gym Membership",
-    amount: 40,
+    amount: -40,
     type: "expense",
     category: "Health",
     date: "2024-06-07",
@@ -44,7 +44,7 @@ let transactions = [
   {
     id: 5,
     description: "Book Purchase",
-    amount: 20,
+    amount: -20,
     type: "expense",
     category: "Education",
     date: "2024-06-10",
@@ -60,7 +60,7 @@ let transactions = [
   {
     id: 7,
     description: "Dinner Out",
-    amount: 60,
+    amount: -60,
     type: "expense",
     category: "Food",
     date: "2024-06-20",
@@ -68,7 +68,7 @@ let transactions = [
   {
     id: 8,
     description: "Grocery Shopping",
-    amount: 150,
+    amount: -150,
     type: "expense",
     category: "Food",
     date: "2024-06-22",
@@ -76,7 +76,7 @@ let transactions = [
   {
     id: 9,
     description: "Utility Bill",
-    amount: 100,
+    amount: -100,
     type: "expense",
     category: "Utilities",
     date: "2024-06-25",
@@ -84,7 +84,7 @@ let transactions = [
   {
     id: 10,
     description: "Car Insurance",
-    amount: 200,
+    amount: -200,
     type: "expense",
     category: "Insurance",
     date: "2024-07-01",
@@ -92,7 +92,7 @@ let transactions = [
   {
     id: 11,
     description: "Online Course",
-    amount: 50,
+    amount: -50,
     type: "expense",
     category: "Education",
     date: "2024-07-05",
@@ -100,7 +100,7 @@ let transactions = [
   {
     id: 12,
     description: "Concert Tickets",
-    amount: 120,
+    amount: -120,
     type: "expense",
     category: "Entertainment",
     date: "2024-07-10",
@@ -108,7 +108,7 @@ let transactions = [
   {
     id: 13,
     description: "Gift for Friend",
-    amount: 80,
+    amount: -80,
     type: "expense",
     category: "Gifts",
     date: "2024-07-15",
@@ -116,14 +116,14 @@ let transactions = [
   {
     id: 14,
     description: "Website Subscription",
-    amount: 30,
+    amount: -30,
     type: "expense",
     category: "Subscription",
     date: "2024-07-20",
   },
 ];
 
-let last_id = 7;
+let last_id = 14;
 
 // CRUD Operations
 
