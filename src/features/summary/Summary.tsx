@@ -8,7 +8,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 import { useAppSelector } from "../../store/hooks";
-import { selectTransactions } from "../dashboard/transactionsSlice";
+import { selectTransactions } from "../dashboard/redux/transactionsSlice";
 import {
   calculateTotal,
   calculateTotalExpense,

@@ -9,7 +9,7 @@ import {
 import TransactionForm, { TransactionFormFields } from "./TransactionForm";
 import { CreateTransactionVO } from "./transactionsApi";
 import { useAppDispatch } from "../../store/hooks";
-import { createTransaction } from "./transactionActions";
+import { createTransaction } from "./redux/transactionActions";
 
 function formDataToTransactionVO(
   data: TransactionFormFields

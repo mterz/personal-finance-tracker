@@ -1,19 +1,21 @@
 import { Box, Flex, FormControl, FormLabel, Select } from "@chakra-ui/react";
 import { DatePicker } from "./DatePicker";
-import { Filter } from "./domain/Filter";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  changeCategoryFilter,
+  changeEndDateFilter,
+  changeStartDateFilter,
+  selectTransactionsFilter,
+} from "./redux/transactionsSlice";
 
 interface Props {
-  filter: Filter;
   categoryOptions: string[];
-  onFilterChange: (filter: Filter) => void;
 }
 
 function FilterContainer(props: Props) {
-  const { filter, categoryOptions, onFilterChange } = props;
-
-  function setFilterProperty<K extends keyof Filter>(key: K, value: Filter[K]) {
-    onFilterChange({ ...filter, [key]: value });
-  }
+  const { categoryOptions } = props;
+  const filter = useAppSelector(selectTransactionsFilter);
+  const dispatch = useAppDispatch();
 
   return (
     <Flex gap={8} direction="row" justifyContent="flex-start" wrap="wrap">
@@ -23,7 +25,7 @@ function FilterContainer(props: Props) {
           <Select
             placeholder="Select category"
             value={filter.category}
-            onChange={(e) => setFilterProperty("category", e.target.value)}
+            onChange={(e) => dispatch(changeCategoryFilter(e.target.value))}
           >
             {categoryOptions.map((category) => (
               <option key={category} value={category}>
@@ -36,15 +38,21 @@ function FilterContainer(props: Props) {
 
       <Flex gap={4}>
         <DatePicker
+          id="start-date"
           label="Start Date"
-          selected={filter.startDate}
-          onChange={(date) => setFilterProperty("startDate", date)}
+          selected={filter.startDate ? new Date(filter.startDate) : null}
+          onChange={(date) =>
+            dispatch(changeStartDateFilter(date?.toISOString() ?? ""))
+          }
         />
 
         <DatePicker
+          id="end-date"
           label="End Date"
-          selected={filter.endDate}
-          onChange={(date) => setFilterProperty("endDate", date)}
+          selected={filter.endDate ? new Date(filter.endDate) : null}
+          onChange={(date) =>
+            dispatch(changeEndDateFilter(date?.toISOString() ?? ""))
+          }
         />
       </Flex>
     </Flex>

@@ -1,7 +1,7 @@
 import { Accordion, Grid, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
-import { deleteTransaction } from "./transactionActions";
+import { deleteTransaction } from "./redux/transactionActions";
 import { Transaction } from "./domain/Transaction";
 import TransactionListItem from "./TransactionListItem";
 

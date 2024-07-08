@@ -11,39 +11,39 @@ describe('getFilteredTransactions', () => {
   ];
 
   test('filters transactions by category', () => {
-    const filter: Filter = { category: 'Food', startDate: null, endDate: null};
+    const filter: Filter = { category: 'Food', startDate: '', endDate: ''};
     const filteredTransactions = getFilteredTransactions(transactions, filter);
     expect(filteredTransactions.length).toBe(2);
     expect(filteredTransactions.every(t => t.category === 'Food')).toBeTruthy();
   });
 
   test('filters transactions by start date', () => {
-    const filter = { startDate: new Date('2023-04-05'), endDate: null, category: ''};
+    const filter = { startDate: '2023-04-05', endDate: '', category: ''};
     const filteredTransactions = getFilteredTransactions(transactions, filter);
     expect(filteredTransactions.length).toBe(3);
-    expect(filteredTransactions.every(t => new Date(t.date) >= filter.startDate)).toBeTruthy();
+    expect(filteredTransactions.every(t => t.date >= filter.startDate)).toBeTruthy();
   });
 
   test('filters transactions by end date', () => {
-    const filter = { endDate: new Date('2023-04-10'), startDate: null, category: ''};
+    const filter = { endDate: '2023-04-10', startDate: '', category: ''};
     const filteredTransactions = getFilteredTransactions(transactions, filter);
     expect(filteredTransactions.length).toBe(3);
-    expect(filteredTransactions.every(t => new Date(t.date) <= filter.endDate)).toBeTruthy();
+    expect(filteredTransactions.every(t => t.date <= filter.endDate)).toBeTruthy();
   });
 
   test('combines multiple filters', () => {
     const filter = {
       category: 'Food',
-      startDate: new Date('2023-04-01'),
-      endDate: new Date('2023-04-10')
+      startDate: '2023-04-01',
+      endDate: '2023-04-10'
     };
     const filteredTransactions = getFilteredTransactions(transactions, filter);
     expect(filteredTransactions.length).toBe(2);
-    expect(filteredTransactions.every(t => t.category === 'Food' && new Date(t.date) >= filter.startDate && new Date(t.date) <= filter.endDate)).toBeTruthy();
+    expect(filteredTransactions.every(t => t.category === 'Food' && t.date >= filter.startDate && t.date <= filter.endDate)).toBeTruthy();
   });
 
   test('returns all transactions when no filter is applied', () => {
-    const filter = { category: '', startDate: null, endDate: null };
+    const filter = { category: '', startDate: '', endDate: '' };
     const filteredTransactions = getFilteredTransactions(transactions, filter);
     expect(filteredTransactions.length).toBe(transactions.length);
   });

@@ -1,6 +1,6 @@
-import { createAsyncThunk } from "../../store/types";
-import { Transaction } from "./domain/Transaction";
-import { CreateTransactionVO, transactionsApi } from "./transactionsApi";
+import { createAsyncThunk } from "../../../store/types";
+import { Transaction } from "../domain/Transaction";
+import { CreateTransactionVO, transactionsApi } from "../transactionsApi";
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',

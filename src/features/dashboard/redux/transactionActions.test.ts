@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { Transaction } from './domain/Transaction';
+import { Transaction } from '../domain/Transaction';
 import { createTransaction, deleteTransaction, fetchTransactions, updateTransaction } from './transactionActions';
-import { transactionsApi } from './transactionsApi';
+import { transactionsApi } from '../transactionsApi';
 import transactionsReducer from './transactionsSlice';
-import { recordActionsMiddleware } from '../../utils/test/recordActionsMiddleware';
+import { recordActionsMiddleware } from '../../../utils/test/recordActionsMiddleware';
 
 
-jest.mock('./transactionsApi', () => ({
+jest.mock('../transactionsApi', () => ({
   transactionsApi: {
     fetchTransactions: jest.fn(),
     createTransaction: jest.fn().mockImplementation((transaction: Transaction) => Promise.resolve(transaction)),
@@ -34,7 +34,7 @@ describe('fetchTransactions action', () => {
   });
 
   afterAll(() => {
-    jest.unmock('./transactionsApi');
+    jest.unmock('../transactionsApi');
   });
 
   test('fetchTransactions action', async () => {

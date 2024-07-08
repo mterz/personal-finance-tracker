@@ -7,11 +7,11 @@ export function getFilteredTransactions(transactions: Transaction[], filter: Fil
       return false;
     }
     
-    if (filter.startDate && new Date(transaction.date) < filter.startDate) {
+    if (filter.startDate && transaction.date < filter.startDate) {
       return false;
     }
 
-    if (filter.endDate && new Date(transaction.date) > filter.endDate) {
+    if (filter.endDate && transaction.date > filter.endDate) {
       return false;
     }
 

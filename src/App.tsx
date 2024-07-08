@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import { fetchTransactions } from "./features/dashboard/transactionActions";
+import { fetchTransactions } from "./features/dashboard/redux/transactionActions";
 import Dashboard from "./features/dashboard/Dashboard";
 import { useAppDispatch } from "./store/hooks";
 import Summary from "./features/summary/Summary";

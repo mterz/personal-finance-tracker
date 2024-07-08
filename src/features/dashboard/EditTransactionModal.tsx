@@ -1,7 +1,7 @@
 import { EditIcon } from "@chakra-ui/icons";
 import { Button, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { useAppDispatch } from "../../store/hooks";
-import { updateTransaction } from "./transactionActions";
+import { updateTransaction } from "./redux/transactionActions";
 import { Transaction } from "./domain/Transaction";
 import TransactionForm, { TransactionFormFields } from "./TransactionForm";
 
